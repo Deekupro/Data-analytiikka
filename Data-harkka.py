@@ -3,7 +3,6 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 import scipy.stats as stats
-from datetime import datetime
 
 
 df = pd.read_csv('data/5000randomia.csv')
