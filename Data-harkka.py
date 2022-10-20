@@ -63,3 +63,39 @@ acc_by_limit = df.Speed_limit.value_counts().sort_index()
 barplot=plt.bar(x=limit, height=acc_by_limit)
 plt.bar_label(barplot, labels=acc_by_limit, label_type="edge")
 plt.show()
+
+#Luodaan dataframet jossa vain tietyt loukkaantumiset.
+fatal_accidents = df[df['Accident_Severity'] == 1]
+serious_accidents = df[df['Accident_Severity'] == 2]
+minor_accidents = df[df['Accident_Severity'] == 3]
+
+#Tutkitaan kuolemaan johtaneita onnettomuuksia nopeusalueen mukaan
+fatal_limit = np.unique(fatal_accidents['Speed_limit'])
+fatal_acc_by_limit = fatal_accidents.Speed_limit.value_counts().sort_index()
+barplot=plt.bar(x=fatal_limit, height=fatal_acc_by_limit)
+plt.title('Kuolemaan johtaneet')
+plt.bar_label(barplot, labels=fatal_acc_by_limit, label_type="edge")
+plt.show()
+
+
+#Tutkitaan vakavia onnettomuuksia nopeusalueen mukaan
+serious_limit = np.unique(serious_accidents['Speed_limit'])
+serious_acc_by_limit = serious_accidents.Speed_limit.value_counts().sort_index()
+barplot=plt.bar(x=serious_limit, height=serious_acc_by_limit)
+plt.title('Vakaviin vammoihin johtaneet')
+plt.bar_label(barplot, labels=serious_acc_by_limit, label_type="edge")
+plt.show()
+
+
+#Tutkitaan lieviä onnettomuuksia nopeusalueen mukaan
+minor_limit = np.unique(minor_accidents['Speed_limit'])
+minor_acc_by_limit = minor_accidents.Speed_limit.value_counts().sort_index()
+barplot=plt.bar(x=minor_limit, height=minor_acc_by_limit)
+plt.title('Lieviin vammoihin johtaneet')
+plt.bar_label(barplot, labels=minor_acc_by_limit, label_type="edge")
+plt.show()
+
+#Tutkitaan kuinka iso prosentti osuus kuolemaan johtaneista tapahtuu tietyllä tie tyylillä
+print(fatal_accidents.Road_Type.value_counts()/fatal_accidents.shape[0])
+print(serious_accidents.Road_Type.value_counts()/serious_accidents.shape[0])
+print(minor_accidents.Road_Type.value_counts()/minor_accidents.shape[0])
