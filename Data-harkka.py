@@ -3,8 +3,12 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 import scipy.stats as stats
+from sklearn.preprocessing import LabelEncoder
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 #df = pd.read_csv('data/5000randomia.csv')
 df = pd.read_csv('data/cleaned_pt2_accidents_2005_to_2014.csv')
 #muutetaan Date_time datetimeksi.
@@ -53,7 +57,11 @@ plt.show()
 
 
 #Tutkitaan minä viikonpäivänä tapahtuu eniten onnettomuuksia.
+<<<<<<< HEAD
 days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+=======
+days = ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+>>>>>>> main
 acc_by_day = df.Day_of_Week.value_counts().sort_index()
 barplot=plt.bar(x=days, height=acc_by_day)
 plt.bar_label(barplot, labels=acc_by_day, label_type="edge")
@@ -108,3 +116,31 @@ print(fatal_accidents.Road_Type.value_counts()/fatal_accidents.shape[0])
 print(serious_accidents.Road_Type.value_counts()/serious_accidents.shape[0])
 print(minor_accidents.Road_Type.value_counts()/minor_accidents.shape[0])
 
+<<<<<<< HEAD
+=======
+
+#Muutetaan objectit integereiksi, jossa corr funktio ymmärtää niitä.
+le = LabelEncoder()
+df['Road_Type'] = le.fit_transform(df['Road_Type'])
+df['Weather_Conditions'] = le.fit_transform(df['Weather_Conditions'])
+df['Road_Surface_Conditions'] = le.fit_transform(df['Road_Surface_Conditions'])
+df['Light_Conditions'] = le.fit_transform(df['Light_Conditions'])
+df['Junction_Control'] = le.fit_transform(df['Junction_Control'])
+df['Pedestrian_Crossing-Human_Control'] = le.fit_transform(df['Pedestrian_Crossing-Human_Control'])
+df['Pedestrian_Crossing-Physical_Facilities'] = le.fit_transform(df['Pedestrian_Crossing-Physical_Facilities'])
+df['Special_Conditions_at_Site'] = le.fit_transform(df['Special_Conditions_at_Site'])
+df['Carriageway_Hazards'] = le.fit_transform(df['Carriageway_Hazards'])
+
+
+#korrelaatiokertoimia 
+df_corr = df.loc[:,['Light_Conditions','Road_Surface_Conditions','Weather_Conditions','Road_Type','Accident_Severity','Number_of_Vehicles','Speed_limit','Urban_or_Rural_Area']]
+corr = df_corr.corr()
+sns.heatmap(corr, annot=True)
+plt.show()
+
+#korrelaatiokertoimia 
+df_corr1 = df.loc[:,['Accident_Severity','Junction_Control','Pedestrian_Crossing-Human_Control','Pedestrian_Crossing-Physical_Facilities','Special_Conditions_at_Site','Carriageway_Hazards']]
+corr1 = df_corr1.corr()
+sns.heatmap(corr1, annot=True)
+plt.show()
+>>>>>>> main
