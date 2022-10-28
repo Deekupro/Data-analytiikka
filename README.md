@@ -1,6 +1,6 @@
 # Data-analyytikka oppimistehtävä
 
-## Ohjeet
+##Sisältö
+Data-esi.py tiedostossa on esikäsitelty dataa.
+Data-harkka.py tiedostossa on visualisoitu, sekä tutkittu korrelaatio kertoimia.
 
-Lataa Onedrivestä tiedostot 5000randomia.csv ja cleaned_pt2_accidents_2005_to_2014.csv. 
-Kun testaat komentojen toimivuutta käytä 5000randomia.csv tiedostoa, jotta ei tarvi odotella koodin juoksemista.
